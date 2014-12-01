@@ -1,0 +1,440 @@
+head	1.6;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.6
+date	2007.09.17.15.13.08;	author Kimtheman;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2007.09.13.02.20.59;	author Kimtheman;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2007.09.12.17.11.06;	author Kimtheman;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2007.09.11.20.24.51;	author Kimtheman;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2007.09.11.17.23.26;	author Kimtheman;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2007.09.11.14.01.44;	author Kimtheman;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.6
+log
+@Added t-shirt size field, and a new validator isEmailUWOsh.
+@
+text
+@# -*- coding: utf-8 -*-
+#
+# File: HomecomingTeam.py
+#
+# Copyright (c) 2007 by []
+# Generator: ArchGenXML Version 1.5.2
+#            http://plone.org/products/archgenxml
+#
+# GNU General Public License (GPL)
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+
+__author__ = """T. Kim Nguyen <nguyen@@uwosh.edu> <unknown>"""
+__docformat__ = 'plaintext'
+
+from AccessControl import ClassSecurityInfo
+from Products.Archetypes.atapi import *
+from Products.UWOshHomecomingSimple.config import *
+
+##code-section module-header #fill in your manual code here
+from Products.CMFCore.utils import getToolByName
+##/code-section module-header
+
+schema = Schema((
+
+    StringField(
+        name='title',
+        widget=StringWidget(
+            label_msgid="label_title",
+            i18n_domain="plone",
+            label="Team Name",
+            visible={'view':'invisible'},
+        ),
+        required=1,
+        accessor="Title",
+        searchable=1
+    ),
+
+    StringField(
+        name='membername1',
+        widget=StringWidget(
+            label="Member 1 Name",
+            label_msgid='UWOshHomecomingSimple_label_membername1',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        searchable=1,
+        default_method="setDefaultMemberName1"
+    ),
+
+    StringField(
+        name='memberemail1',
+        widget=StringWidget(
+            label="Member 1 Email",
+            label_msgid='UWOshHomecomingSimple_label_memberemail1',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        edit_accessor="getRawMemberEmail1",
+        default_method="setDefaultMemberEmail1",
+        searchable=1,
+        validators=('isEmail', 'isEmailUWOsh')
+    ),
+
+    StringField(
+        name='membershirt1',
+        widget=SelectionWidget(
+            label="Member 1 T-Shirt Size",
+            label_msgid='UWOshHomecomingSimple_label_membershirt1',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        enforceVocabulary=1,
+        vocabulary=['--choose one--','S','M','L','XL','XXL'],
+        searchable=1
+    ),
+
+    StringField(
+        name='membername2',
+        widget=StringWidget(
+            label="Member 2 Name",
+            label_msgid='UWOshHomecomingSimple_label_membername2',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        searchable=1
+    ),
+
+    StringField(
+        name='memberemail2',
+        widget=StringWidget(
+            label="Member 2 Email",
+            label_msgid='UWOshHomecomingSimple_label_memberemail2',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('isEmail', 'isEmailUWOsh'),
+        searchable=1,
+        edit_accessor="getRawMemberEmail2"
+    ),
+
+    StringField(
+        name='membershirt2',
+        widget=SelectionWidget(
+            label="Member 2 T-Shirt Size",
+            label_msgid='UWOshHomecomingSimple_label_membershirt2',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        enforceVocabulary=1,
+        vocabulary=['--choose one--','S','M','L','XL','XXL'],
+        searchable=1
+    ),
+
+    StringField(
+        name='membername3',
+        widget=StringWidget(
+            label="Member 3 Name",
+            label_msgid='UWOshHomecomingSimple_label_membername3',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        searchable=1
+    ),
+
+    StringField(
+        name='memberemail3',
+        widget=StringWidget(
+            label="Member 3 Email",
+            label_msgid='UWOshHomecomingSimple_label_memberemail3',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('isEmail', 'isEmailUWOsh'),
+        searchable=1,
+        edit_accessor="getRawMemberEmail3"
+    ),
+
+    StringField(
+        name='membershirt3',
+        widget=SelectionWidget(
+            label="Member 3 T-Shirt Size",
+            label_msgid='UWOshHomecomingSimple_label_membershirt3',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        enforceVocabulary=1,
+        vocabulary=['--choose one--','S','M','L','XL','XXL'],
+        searchable=1
+    ),
+
+    StringField(
+        name='membername4',
+        widget=StringWidget(
+            label="Member 4 Name",
+            label_msgid='UWOshHomecomingSimple_label_membername4',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        searchable=1
+    ),
+
+    StringField(
+        name='memberemail4',
+        widget=StringWidget(
+            label="Member 4 Email",
+            label_msgid='UWOshHomecomingSimple_label_memberemail4',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('isEmail', 'isEmailUWOsh'),
+        searchable=1,
+        edit_accessor="getRawMemberEmail4"
+    ),
+
+    StringField(
+        name='membershirt4',
+        widget=SelectionWidget(
+            label="Member 4 T-Shirt Size",
+            label_msgid='UWOshHomecomingSimple_label_membershirt4',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        enforceVocabulary=1,
+        vocabulary=['--choose one--','S','M','L','XL','XXL'],
+        searchable=1
+    ),
+
+),
+)
+
+##code-section after-local-schema #fill in your manual code here
+##/code-section after-local-schema
+
+HomecomingTeam_schema = BaseSchema.copy() + \
+    schema.copy()
+
+##code-section after-schema #fill in your manual code here
+##/code-section after-schema
+
+class HomecomingTeam(BaseContent):
+    """
+    """
+    security = ClassSecurityInfo()
+    __implements__ = (getattr(BaseContent,'__implements__',()),)
+
+    # This name appears in the 'add' box
+    archetype_name = 'Homecoming Team'
+
+    meta_type = 'HomecomingTeam'
+    portal_type = 'HomecomingTeam'
+    allowed_content_types = []
+    filter_content_types = 0
+    global_allow = 1
+    #content_icon = 'HomecomingTeam.gif'
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ()
+    typeDescription = "Homecoming Team"
+    typeDescMsgId = 'description_edit_homecomingteam'
+
+    _at_rename_after_creation = True
+
+    schema = HomecomingTeam_schema
+
+    ##code-section class-header #fill in your manual code here
+    ##/code-section class-header
+
+    # Methods
+
+    # Manually created methods
+
+    def setDefaultMemberName1(self):
+        pm = getToolByName (self, "portal_membership")
+        m = pm.getAuthenticatedMember()
+        return m.getProperty('fullname', "")
+
+    def setDefaultMemberEmail1(self):
+        pm = getToolByName (self, "portal_membership")
+        m = pm.getAuthenticatedMember()
+        return m.getProperty('email', "")
+
+    def getMemberemail1 (self):
+        return '<a href="mailto:' + self.memberemail1 + '">' + self.memberemail1 + '</a>'
+
+    def getMemberemail2 (self):
+        return '<a href="mailto:' + self.memberemail2 + '">' + self.memberemail2 + '</a>'
+
+    def getMemberemail3 (self):
+        return '<a href="mailto:' + self.memberemail3 + '">' + self.memberemail3 + '</a>'
+
+    def getMemberemail4 (self):
+        return '<a href="mailto:' + self.memberemail4 + '">' + self.memberemail4 + '</a>'
+
+    def getRawMemberEmail1 (self):
+        return self.memberemail1
+
+    def getRawMemberEmail2 (self):
+        return self.memberemail2
+
+    def getRawMemberEmail3 (self):
+        return self.memberemail3
+
+    def getRawMemberEmail4 (self):
+        return self.memberemail4
+
+
+
+registerType(HomecomingTeam, PROJECTNAME)
+# end of class HomecomingTeam
+
+##code-section module-footer #fill in your manual code here
+##/code-section module-footer
+
+
+
+@
+
+
+1.5
+log
+@All fields are searchable.
+@
+text
+@d74 13
+a86 1
+        validators=('isEmail',)
+d106 1
+a106 1
+        validators=('isEmail',),
+d112 12
+d140 1
+a140 1
+        validators=('isEmail',),
+d146 12
+d174 1
+a174 1
+        validators=('isEmail',),
+d179 12
+@
+
+
+1.4
+log
+@Override title attribute to give it a new label.  Added edit accessors and isEmail validators for email address fields. Fixed type name. Added default accessors that format email addresses into <a href='mailto:' /> links.
+@
+text
+@d60 1
+d73 1
+d83 2
+a84 1
+        )
+d95 1
+d105 2
+a106 1
+        )
+d117 1
+d127 2
+a128 1
+        )
+d139 1
+d221 2
+@
+
+
+1.3
+log
+@Got the disallowValueModification validator to work on slot 1.
+@
+text
+@d41 13
+d70 1
+d91 2
+a92 1
+        validators=('isEmail',)
+d111 2
+a112 1
+        validators=('isEmail',)
+d131 2
+a132 1
+        validators=('isEmail',)
+d154 1
+a154 1
+    archetype_name = 'HomecomingTeam'
+d165 1
+a165 1
+    typeDescription = "HomecomingTeam"
+a172 9
+    def setDefaultMemberName1(self):
+        pm = getToolByName (self, "portal_membership")
+        m = pm.getAuthenticatedMember()
+        return m.getProperty('fullname', "")
+
+    def setDefaultMemberEmail1(self):
+        pm = getToolByName (self, "portal_membership")
+        m = pm.getAuthenticatedMember()
+        return m.getProperty('email', "")
+a187 1
+    ##/code-section class-header
+d189 23
+@
+
+
+1.2
+log
+@New value of slot must be an existing team.
+@
+text
+@d57 2
+a58 1
+        default_method="setDefaultMemberEmail1"
+d76 2
+a77 1
+        )
+d95 2
+a96 1
+        )
+d114 2
+a115 1
+        )
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d35 1
+d165 13
+@

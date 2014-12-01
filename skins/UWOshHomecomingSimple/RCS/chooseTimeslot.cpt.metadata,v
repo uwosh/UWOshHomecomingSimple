@@ -1,0 +1,42 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2007.09.13.20.46.11;	author Kimtheman;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2007.09.13.19.20.02;	author Kimtheman;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Added validator
+@
+text
+@[actions]
+action.success = traverse_to:string:setSlotToTeam
+
+[validators]
+validators = validateTimeslot
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 3
+@

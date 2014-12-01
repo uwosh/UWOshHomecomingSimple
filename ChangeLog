@@ -1,0 +1,78 @@
+2007-09-18  T. Kim Nguyen  <Kimtheman@gollum.local>
+
+	* ChangeLog: New file.
+
+	* skins/UWOshHomecomingSimple/createTeam.py:
+	If Plone 2.1, uses the /object_delete URL on Cancel, else uses the /delete_confirmation URL.
+
+	* content/HomecomingSignupSheet.py:
+	Fixed so it correctly handles the case in which a team has been deleted but is still in a time slot.
+
+	* content/isEmailUWOshValidator.py:
+	Removed error message referring to Back button.
+
+	* content/isEmailUWOshValidator.py: New file.
+
+2007-09-17  T. Kim Nguyen  <Kimtheman@gollum.local>
+
+	* content/HomecomingSignupSheet.py:
+	Fixed to handle case where attribute does not exist yet.
+
+	* content/HomecomingSignupSheet.py:
+	Added t-shirt size field, and a new validator isEmailUWOsh.
+
+2007-09-13  T. Kim Nguyen  <Kimtheman@gollum.local>
+
+	* skins/UWOshHomecomingSimple/createTeam.py:
+	Added check that user is logged in.  If not, sends to login_form.
+
+	* skins/UWOshHomecomingSimple/homecomingsignupsheet_view.pt, skins/UWOshHomecomingSimple/createTeam.py:
+	New file.
+
+2007-09-12  T. Kim Nguyen  <Kimtheman@gollum.local>
+
+	* content/HomecomingSignupSheet.py:
+	Fixed mutators so they accept blank values now.  Fixed mutator for
+	slot 1; it was missing a line of code that the other mutators all had.
+
+	* content/HomecomingSignupSheet.py:
+	All fields are searchable.  Specified raw edit accessor so that the
+	normal accessor returns a URL to the team.  Corrected the catalog
+	query that was not returning all teams (it was returning just the ones
+	viewable by the currently logged in member).
+
+	* ../../../../../../Users/Kimtheman/Homecoming/h3.zargo, ../../../../../../Users/Kimtheman/Homecoming/h3.xmi:
+	New file.
+
+	* content/HomecomingSignupSheet.py:
+	Override title attribute to give it a new label.  Replaced old/bad time slot validators with a single new validator I created ('disallowValueModification'). Fixed type name.
+
+2007-09-11  T. Kim Nguyen  <Kimtheman@gollum.local>
+
+	* content/HomecomingSignupSheet.py:
+	Got the disallowValueModification validator to work on slot 1.
+
+	* ../Archetypes/Field.py: New file.
+
+	* content/HomecomingSignupSheet.py:
+	New value of slot must be an existing team.
+
+	* content/HomecomingSignupSheet.py: New file.
+
+2007-09-07  T. Kim Nguyen  <Kimtheman@gollum.local>
+
+	* ../../../../../../Library/WebServer/Documents/bugs/templates/default/bugdisplay.html:
+	Increased font size of bug title
+
+	* ../../../../../../Library/WebServer/Documents/bugs/templates/default/bugdisplay.html:
+	New file.
+
+2007-05-31  T. Kim Nguyen  <Kimtheman@gollum.local>
+
+	* ../PloneSurvey/content/Survey.py:
+	Fixed translateSavedMessage default value so it doesn't include a CR
+	in the message (seems to break the portal_status_message mechanism).
+	Also fixed exitSurvey so it handles HTTPS URLs.
+
+	* ../PloneSurvey/content/Survey.py: New file.
+

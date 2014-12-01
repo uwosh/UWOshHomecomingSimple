@@ -1,0 +1,102 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2007.09.17.15.13.11;	author Kimtheman;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2007.09.11.20.24.51;	author Kimtheman;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2007.09.11.14.01.53;	author Kimtheman;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@Added t-shirt size field, and a new validator isEmailUWOsh.
+@
+text
+@# -*- coding: utf-8 -*-
+#
+# File: content.py
+#
+# Copyright (c) 2007 by []
+# Generator: ArchGenXML Version 1.5.2
+#            http://plone.org/products/archgenxml
+#
+# GNU General Public License (GPL)
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+
+__author__ = """T. Kim Nguyen <nguyen@@uwosh.edu> <unknown>"""
+__docformat__ = 'plaintext'
+
+
+##code-section init-module-header #fill in your manual code here
+from Products.validation import validation
+from DisallowValueModificationValidator import DisallowValueModificationValidator
+from isEmailUWOshValidator import isEmailUWOshValidator
+
+validation.register(DisallowValueModificationValidator('disallowValueModification'))
+validation.register(isEmailUWOshValidator('isEmailUWOsh'))
+##/code-section init-module-header
+
+
+# Subpackages
+# Additional
+
+# Classes
+import HomecomingSignupSheet
+import HomecomingTeam
+
+##code-section init-module-footer #fill in your manual code here
+##/code-section init-module-footer
+
+@
+
+
+1.2
+log
+@Got the disallowValueModification validator to work on slot 1.
+@
+text
+@d34 1
+d37 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d32 4
+@

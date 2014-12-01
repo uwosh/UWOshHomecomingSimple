@@ -1,0 +1,1207 @@
+head	1.10;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.10
+date	2007.09.18.17.28.53;	author Kimtheman;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2007.09.18.17.20.46;	author Kimtheman;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2007.09.17.21.13.27;	author Kimtheman;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2007.09.17.15.13.08;	author Kimtheman;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2007.09.13.04.38.27;	author Kimtheman;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2007.09.13.02.20.25;	author Kimtheman;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2007.09.12.17.12.22;	author Kimtheman;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2007.09.11.20.24.51;	author Kimtheman;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2007.09.11.17.23.23;	author Kimtheman;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2007.09.11.14.01.58;	author Kimtheman;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.10
+log
+@Tells which team cannot be found.
+@
+text
+@# -*- coding: utf-8 -*-
+#
+# File: HomecomingSignupSheet.py
+#
+# Copyright (c) 2007 by []
+# Generator: ArchGenXML Version 1.5.2
+#            http://plone.org/products/archgenxml
+#
+# GNU General Public License (GPL)
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+
+__author__ = """T. Kim Nguyen <nguyen@@uwosh.edu> <unknown>"""
+__docformat__ = 'plaintext'
+
+from AccessControl import ClassSecurityInfo
+from Products.Archetypes.atapi import *
+from Products.UWOshHomecomingSimple.config import *
+
+##code-section module-header #fill in your manual code here
+#from Products.validation.validators import ExpressionValidator
+from Products.CMFCore.utils import getToolByName
+from zLOG import LOG, INFO, ERROR, WARNING
+##/code-section module-header
+
+schema = Schema((
+
+    StringField(
+        name='title',
+        widget=StringWidget(
+            label_msgid="label_title",
+            i18n_domain="plone",
+            visible={'view':'invisible'},
+            label='Title',
+        ),
+        searchable=1,
+        view="Manage portal",
+        required=1,
+        write_permission="Manage portal",
+        accessor="Title"
+    ),
+
+    StringField(
+        name='timeslot1',
+        widget=StringWidget(
+            label="Mon. Oct. 1 4:00-4:15 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot1',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot1"
+    ),
+
+    StringField(
+        name='timeslot2',
+        widget=StringWidget(
+            label="Mon. Oct. 1 4:15-4:30 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot2',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot2"
+    ),
+
+    StringField(
+        name='timeslot3',
+        widget=StringWidget(
+            label="Mon. Oct. 1 4:30-4:45 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot3',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot3"
+    ),
+
+    StringField(
+        name='timeslot4',
+        widget=StringWidget(
+            label="Mon. Oct. 1 4:45-5:00 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot4',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot4"
+    ),
+
+    StringField(
+        name='timeslot5',
+        widget=StringWidget(
+            label="Mon. Oct. 1 5:00-5:15 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot5',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot5"
+    ),
+
+    StringField(
+        name='timeslot6',
+        widget=StringWidget(
+            label="Mon. Oct. 1 5:15-5:30 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot6',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot6"
+    ),
+
+    StringField(
+        name='timeslot7',
+        widget=StringWidget(
+            label="Mon. Oct. 1 5:30-5:45 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot7',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot7"
+    ),
+
+    StringField(
+        name='timeslot8',
+        widget=StringWidget(
+            label="Mon. Oct. 1 5:45-6:00 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot8',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot8"
+    ),
+
+    StringField(
+        name='timeslot9',
+        widget=StringWidget(
+            label="Tues. Oct. 2 6:00-6:15 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot9',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot9"
+    ),
+
+    StringField(
+        name='timeslot10',
+        widget=StringWidget(
+            label="Tues. Oct. 2 6:15-6:30 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot10',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot10"
+    ),
+
+    StringField(
+        name='timeslot11',
+        widget=StringWidget(
+            label="Tues. Oct. 2 6:30-6:45 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot11',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot11"
+    ),
+
+    StringField(
+        name='timeslot12',
+        widget=StringWidget(
+            label="Tues. Oct. 2 6:45-7:00 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot12',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot12"
+    ),
+
+    StringField(
+        name='timeslot13',
+        widget=StringWidget(
+            label="Tues. Oct. 2 7:00-7:15 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot13',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot13"
+    ),
+
+    StringField(
+        name='timeslot14',
+        widget=StringWidget(
+            label="Tues. Oct. 2 7:15-7:30 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot14',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot14"
+    ),
+
+    StringField(
+        name='timeslot15',
+        widget=StringWidget(
+            label="Tues. Oct. 2 7:30-7:45 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot15',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot15"
+    ),
+
+    StringField(
+        name='timeslot16',
+        widget=StringWidget(
+            label="Tues. Oct. 2 7:45-8:00 p.m.",
+            label_msgid='UWOshHomecomingSimple_label_timeslot16',
+            i18n_domain='UWOshHomecomingSimple',
+        ),
+        validators=('disallowValueModification',),
+        searchable=1,
+        edit_accessor="getRawTimeslot16"
+    ),
+
+),
+)
+
+##code-section after-local-schema #fill in your manual code here
+##/code-section after-local-schema
+
+HomecomingSignupSheet_schema = BaseSchema.copy() + \
+    schema.copy()
+
+##code-section after-schema #fill in your manual code here
+##/code-section after-schema
+
+class HomecomingSignupSheet(BaseContent):
+    """
+    """
+    security = ClassSecurityInfo()
+    __implements__ = (getattr(BaseContent,'__implements__',()),)
+
+    # This name appears in the 'add' box
+    archetype_name = 'Homecoming Signup Sheet'
+
+    meta_type = 'HomecomingSignupSheet'
+    portal_type = 'HomecomingSignupSheet'
+    allowed_content_types = []
+    filter_content_types = 0
+    global_allow = 1
+    #content_icon = 'HomecomingSignupSheet.gif'
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ()
+    typeDescription = "Homecoming Signup Sheet"
+    typeDescMsgId = 'description_edit_homecomingsignupsheet'
+
+    _at_rename_after_creation = True
+
+    schema = HomecomingSignupSheet_schema
+
+    ##code-section class-header #fill in your manual code here
+    ##/code-section class-header
+
+    # Methods
+
+    # Manually created methods
+
+    def _getTeamNames (self):
+#         catalog = getToolByName (self, 'portal_catalog')
+#         query = {}
+#         query["Type"] = "HomecomingTeam"
+#         teams = catalog.searchResults (**query)
+        teams = self.queryCatalog ({'portal_type':'HomecomingTeam'})
+        teamNames = []
+        for t in teams:
+            o = t.getObject()
+            #LOG ("setTimeslot", INFO, "Examining object %s" % str(o))
+            if o:
+                teamNames.append (o.title)
+        #LOG ("setTimeslotNN", INFO, "Catalog query returned teams %s" % teamNames)
+        return teamNames
+
+    def setTimeslot1 (self, value):
+        if getattr(self, 'timeslot1', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot1 = value
+        else:
+            raise ValueError, "timeslot1: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot2 (self, value):
+        if getattr(self, 'timeslot2', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot2 = value
+        else:
+            raise ValueError, "timeslot2: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot3 (self, value):
+        if getattr(self, 'timeslot3', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot3 = value
+        else:
+            raise ValueError, "timeslot3: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot4 (self, value):
+        if getattr(self, 'timeslot4', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot4 = value
+        else:
+            raise ValueError, "timeslot4: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot5 (self, value):
+        if getattr(self, 'timeslot5', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot5 = value
+        else:
+            raise ValueError, "timeslot5: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot6 (self, value):
+        if getattr(self, 'timeslot6', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot6 = value
+        else:
+            raise ValueError, "timeslot6: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot7 (self, value):
+        if getattr(self, 'timeslot7', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot7 = value
+        else:
+            raise ValueError, "timeslot7: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot8 (self, value):
+        if getattr(self, 'timeslot8', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot8 = value
+        else:
+            raise ValueError, "timeslot8: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot9 (self, value):
+        if getattr(self, 'timeslot9', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot9 = value
+        else:
+            raise ValueError, "timeslot9: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot10 (self, value):
+        if getattr(self, 'timeslot10', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot10 = value
+        else:
+            raise ValueError, "timeslot10: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot11 (self, value):
+        if getattr(self, 'timeslot11', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot11 = value
+        else:
+            raise ValueError, "timeslot11: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot12 (self, value):
+        if getattr(self, 'timeslot12', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot12 = value
+        else:
+            raise ValueError, "timeslot12: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot13 (self, value):
+        if getattr(self, 'timeslot13', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot13 = value
+        else:
+            raise ValueError, "timeslot13: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot14 (self, value):
+        if getattr(self, 'timeslot14', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot14 = value
+        else:
+            raise ValueError, "timeslot14: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot15 (self, value):
+        if getattr(self, 'timeslot15', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot15 = value
+        else:
+            raise ValueError, "timeslot15: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def setTimeslot16 (self, value):
+        if getattr(self, 'timeslot16', None) == ''and value == '':
+            return
+        teamNames = self._getTeamNames()
+        if value == '' or value in teamNames:
+            self.timeslot16 = value
+        else:
+            raise ValueError, "timeslot16: '%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s." % (value, str(teamNames))
+
+    def _getTeamURL (self, teamName):
+        if teamName == '':
+            return ''
+        teamNotFound = '<i>team %s not found</i>' % teamName
+        teamBrains = self.queryCatalog ({'portal_type':'HomecomingTeam', 'Title':teamName})
+        if not teamBrains or len(teamBrains) == 0:
+            return teamNotFound
+        teamBrain = teamBrains[0]
+        team = teamBrain.getObject()
+        if not team:
+            return teamNotFound
+        teamURL = team.absolute_url()
+        return '<a href="%s">%s</a>' % (teamURL, teamName)
+
+    def getTimeslot1 (self):
+        return self._getTeamURL(self.getRawTimeslot1());
+
+    def getRawTimeslot1 (self):
+        try:
+            return self.timeslot1
+        except AttributeError:
+            return ''
+
+    def getTimeslot2 (self):
+        return self._getTeamURL(self.getRawTimeslot2());
+
+    def getRawTimeslot2 (self):
+        try:
+            return self.timeslot2
+        except AttributeError:
+            return ''
+
+    def getTimeslot3 (self):
+        return self._getTeamURL(self.getRawTimeslot3());
+
+    def getRawTimeslot3 (self):
+        try:
+            return self.timeslot3
+        except AttributeError:
+            return ''
+
+    def getTimeslot4 (self):
+        return self._getTeamURL(self.getRawTimeslot4());
+
+    def getRawTimeslot4 (self):
+        try:
+            return self.timeslot4
+        except AttributeError:
+            return ''
+
+    def getTimeslot5 (self):
+        return self._getTeamURL(self.getRawTimeslot5());
+
+    def getRawTimeslot5 (self):
+        try:
+            return self.timeslot5
+        except AttributeError:
+            return ''
+
+    def getTimeslot6 (self):
+        return self._getTeamURL(self.getRawTimeslot6());
+
+    def getRawTimeslot6 (self):
+        try:
+            return self.timeslot6
+        except AttributeError:
+            return ''
+
+    def getTimeslot7 (self):
+        return self._getTeamURL(self.getRawTimeslot7());
+
+    def getRawTimeslot7 (self):
+        try:
+            return self.timeslot7
+        except AttributeError:
+            return ''
+
+    def getTimeslot8 (self):
+        return self._getTeamURL(self.getRawTimeslot8());
+
+    def getRawTimeslot8 (self):
+        try:
+            return self.timeslot8
+        except AttributeError:
+            return ''
+
+    def getTimeslot9 (self):
+        return self._getTeamURL(self.getRawTimeslot9());
+
+    def getRawTimeslot9 (self):
+        try:
+            return self.timeslot9
+        except AttributeError:
+            return ''
+
+    def getTimeslot10 (self):
+        return self._getTeamURL(self.getRawTimeslot10());
+
+    def getRawTimeslot10 (self):
+        try:
+            return self.timeslot10
+        except AttributeError:
+            return ''
+
+    def getTimeslot11 (self):
+        return self._getTeamURL(self.getRawTimeslot11());
+
+    def getRawTimeslot11 (self):
+        try:
+            return self.timeslot11
+        except AttributeError:
+            return ''
+
+    def getTimeslot12 (self):
+        return self._getTeamURL(self.getRawTimeslot12());
+
+    def getRawTimeslot12 (self):
+        try:
+            return self.timeslot12
+        except AttributeError:
+            return ''
+
+    def getTimeslot13 (self):
+        return self._getTeamURL(self.getRawTimeslot13());
+
+    def getRawTimeslot13 (self):
+        try:
+            return self.timeslot13
+        except AttributeError:
+            return ''
+
+    def getTimeslot14 (self):
+        return self._getTeamURL(self.getRawTimeslot14());
+
+    def getRawTimeslot14 (self):
+        try:
+            return self.timeslot14
+        except AttributeError:
+            return ''
+
+    def getTimeslot15 (self):
+        return self._getTeamURL(self.getRawTimeslot15());
+
+    def getRawTimeslot15 (self):
+        try:
+            return self.timeslot15
+        except AttributeError:
+            return ''
+
+    def getTimeslot16 (self):
+        return self._getTeamURL(self.getRawTimeslot16());
+
+    def getRawTimeslot16 (self):
+        try:
+            return self.timeslot16
+        except AttributeError:
+            return ''
+
+
+
+registerType(HomecomingSignupSheet, PROJECTNAME)
+# end of class HomecomingSignupSheet
+
+##code-section module-footer #fill in your manual code here
+##/code-section module-footer
+
+
+
+@
+
+
+1.9
+log
+@Fixed so it correctly handles the case in which a team has been deleted but is still in a time slot.
+@
+text
+@d455 1
+d458 1
+a458 1
+            return ''
+d462 1
+a462 1
+            return ''
+@
+
+
+1.8
+log
+@Fixed to handle case where attribute does not exist yet.
+@
+text
+@d456 2
+@
+
+
+1.7
+log
+@Added t-shirt size field, and a new validator isEmailUWOsh.
+@
+text
+@d309 1
+a309 1
+        if self.timeslot2 == ''and value == '':
+d318 1
+a318 1
+        if self.timeslot2 == ''and value == '':
+d327 1
+a327 1
+        if self.timeslot3 == ''and value == '':
+d336 1
+a336 1
+        if self.timeslot4 == ''and value == '':
+d345 1
+a345 1
+        if self.timeslot5 == ''and value == '':
+d354 1
+a354 1
+        if self.timeslot6 == ''and value == '':
+d363 1
+a363 1
+        if self.timeslot7 == ''and value == '':
+d372 1
+a372 1
+        if self.timeslot8 == ''and value == '':
+d381 1
+a381 1
+        if self.timeslot9 == ''and value == '':
+d390 1
+a390 1
+        if self.timeslot10 == ''and value == '':
+d399 1
+a399 1
+        if self.timeslot11 == ''and value == '':
+d408 1
+a408 1
+        if self.timeslot12 == ''and value == '':
+d417 1
+a417 1
+        if self.timeslot13 == ''and value == '':
+d426 1
+a426 1
+        if self.timeslot14 == ''and value == '':
+d435 1
+a435 1
+        if self.timeslot15 == ''and value == '':
+d444 1
+a444 1
+        if self.timeslot16 == ''and value == '':
+d464 1
+a464 1
+        return self._getTeamURL(self.timeslot1);
+d467 4
+a470 1
+        return self.timeslot1
+d473 1
+a473 1
+        return self._getTeamURL(self.timeslot2);
+d476 4
+a479 1
+        return self.timeslot2
+d482 1
+a482 1
+        return self._getTeamURL(self.timeslot3);
+d485 4
+a488 1
+        return self.timeslot3
+d491 1
+a491 1
+        return self._getTeamURL(self.timeslot4);
+d494 4
+a497 1
+        return self.timeslot4
+d500 1
+a500 1
+        return self._getTeamURL(self.timeslot5);
+d503 4
+a506 1
+        return self.timeslot5
+d509 1
+a509 1
+        return self._getTeamURL(self.timeslot6);
+d512 4
+a515 1
+        return self.timeslot6
+d518 1
+a518 1
+        return self._getTeamURL(self.timeslot7);
+d521 4
+a524 1
+        return self.timeslot7
+d527 1
+a527 1
+        return self._getTeamURL(self.timeslot8);
+d530 4
+a533 1
+        return self.timeslot8
+d536 1
+a536 1
+        return self._getTeamURL(self.timeslot9);
+d539 4
+a542 1
+        return self.timeslot9
+d545 1
+a545 1
+        return self._getTeamURL(self.timeslot10);
+d548 4
+a551 1
+        return self.timeslot10
+d554 1
+a554 1
+        return self._getTeamURL(self.timeslot11);
+d557 4
+a560 1
+        return self.timeslot11
+d563 1
+a563 1
+        return self._getTeamURL(self.timeslot12);
+d566 4
+a569 1
+        return self.timeslot12
+d572 1
+a572 1
+        return self._getTeamURL(self.timeslot13);
+d575 4
+a578 1
+        return self.timeslot13
+d581 1
+a581 1
+        return self._getTeamURL(self.timeslot14);
+d584 4
+a587 1
+        return self.timeslot14
+d590 1
+a590 1
+        return self._getTeamURL(self.timeslot15);
+d593 4
+a596 1
+        return self.timeslot15
+d599 1
+a599 1
+        return self._getTeamURL(self.timeslot16);
+d602 4
+a605 1
+        return self.timeslot16
+@
+
+
+1.6
+log
+@Fixed mutators so they accept blank values now.  Fixed mutator for
+slot 1; it was missing a line of code that the other mutators all had.
+@
+text
+@d559 2
+@
+
+
+1.5
+log
+@All fields are searchable.  Specified raw edit accessor so that the
+normal accessor returns a URL to the team.  Corrected the catalog
+query that was not returning all teams (it was returning just the ones
+viewable by the currently logged in member).
+@
+text
+@d309 2
+d312 1
+a312 1
+        if value in teamNames:
+d321 1
+a321 1
+        if value in teamNames:
+d330 1
+a330 1
+        if value in teamNames:
+d339 1
+a339 1
+        if value in teamNames:
+d348 1
+a348 1
+        if value in teamNames:
+d357 1
+a357 1
+        if value in teamNames:
+d366 1
+a366 1
+        if value in teamNames:
+d375 1
+a375 1
+        if value in teamNames:
+d384 1
+a384 1
+        if value in teamNames:
+d393 1
+a393 1
+        if value in teamNames:
+d402 1
+a402 1
+        if value in teamNames:
+d411 1
+a411 1
+        if value in teamNames:
+d420 1
+a420 1
+        if value in teamNames:
+d429 1
+a429 1
+        if value in teamNames:
+d438 1
+a438 1
+        if value in teamNames:
+d447 1
+a447 1
+        if value in teamNames:
+d453 2
+@
+
+
+1.4
+log
+@Override title attribute to give it a new label.  Replaced old/bad time slot validators with a single new validator I created ('disallowValueModification'). Fixed type name.
+@
+text
+@d64 3
+a66 1
+        validators=('disallowValueModification',)
+d76 3
+a78 1
+        validators=('disallowValueModification',)
+d88 3
+a90 1
+        validators=('disallowValueModification',)
+d100 3
+a102 1
+        validators=('disallowValueModification',)
+d112 3
+a114 1
+        validators=('disallowValueModification',)
+d124 3
+a126 1
+        validators=('disallowValueModification',)
+d136 3
+a138 1
+        validators=('disallowValueModification',)
+d148 3
+a150 1
+        validators=('disallowValueModification',)
+d160 3
+a162 1
+        validators=('disallowValueModification',)
+d172 3
+a174 1
+        validators=('disallowValueModification',)
+d184 3
+a186 1
+        validators=('disallowValueModification',)
+d196 3
+a198 1
+        validators=('disallowValueModification',)
+d208 3
+a210 1
+        validators=('disallowValueModification',)
+d220 3
+a222 1
+        validators=('disallowValueModification',)
+d232 3
+a234 1
+        validators=('disallowValueModification',)
+d244 3
+a246 1
+        validators=('disallowValueModification',)
+d294 5
+a298 5
+        catalog = getToolByName (self, 'portal_catalog')
+        query = {}
+        query["Type"] = "HomecomingTeam"
+        teams = catalog.searchResults (**query)
+        #LOG ("setTimeslot", INFO, "Catalog query returned teams %s" % str(teams))
+d305 1
+d450 8
+d459 95
+@
+
+
+1.3
+log
+@Got the disallowValueModification validator to work on slot 1.
+@
+text
+@d43 15
+d74 1
+a74 1
+        validators=('validateTimeslot2',)
+d84 1
+a84 1
+        validators=('validateTimeslot3',)
+d94 1
+a94 1
+        validators=('validateTimeslot4',)
+d104 1
+a104 1
+        validators=('validateTimeslot5',)
+d114 1
+a114 1
+        validators=('validateTimeslot6',)
+d124 1
+a124 1
+        validators=('validateTimeslot7',)
+d134 1
+a134 1
+        validators=('validateTimeslot8',)
+d144 1
+a144 1
+        validators=('validateTimeslot9',)
+d154 1
+a154 1
+        validators=('validateTimeslot10',)
+d164 1
+a164 1
+        validators=('validateTimeslot11',)
+d174 1
+a174 1
+        validators=('validateTimeslot12',)
+d184 1
+a184 1
+        validators=('validateTimeslot13',)
+d194 1
+a194 1
+        validators=('validateTimeslot14',)
+d204 1
+a204 1
+        validators=('validateTimeslot15',)
+d214 1
+a214 1
+        validators=('validateTimeslot16',)
+a226 1
+NONEXISTENT_TEAM_MESSAGE = "'%s' is not the name of an existing homecoming team. Please use your browser's Back button then choose one of %s."
+d236 1
+a236 1
+    archetype_name = 'Homecoming Team'
+d247 1
+a247 1
+    typeDescription = "Homecoming Team"
+a416 64
+    def validateTimeslot1 (self, value):
+        if self.timeslot1 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot2 (self, value):
+        if self.timeslot2 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot3 (self, value):
+        if self.timeslot3 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot4 (self, value):
+        if self.timeslot4 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot5 (self, value):
+        if self.timeslot5 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot6 (self, value):
+        if self.timeslot6 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot7 (self, value):
+        if self.timeslot7 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot8 (self, value):
+        if self.timeslot8 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot9 (self, value):
+        if self.timeslot9 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot10 (self, value):
+        if self.timeslot10 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot11 (self, value):
+        if self.timeslot11 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot12 (self, value):
+        if self.timeslot12 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot13 (self, value):
+        if self.timeslot13 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot14 (self, value):
+        if self.timeslot14 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot15 (self, value):
+        if self.timeslot15 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+    def validateTimeslot16 (self, value):
+        if self.timeslot16 <> '':
+            raise Unauthorized, CANNOT_CHANGE_TEAM_MESSAGE
+
+@
+
+
+1.2
+log
+@New value of slot must be an existing team.
+@
+text
+@d49 1
+a49 1
+        validators=('validateTimeslot1',)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d35 3
+a37 1
+from Products.validation.validators import ExpressionValidator
+a43 1
+        mutator="setTimeslot1NoModify",
+d48 2
+a49 1
+        )
+d58 2
+a59 1
+        )
+d68 2
+a69 1
+        )
+d78 2
+a79 1
+        )
+d88 2
+a89 1
+        )
+d98 2
+a99 1
+        )
+d108 2
+a109 1
+        )
+d118 2
+a119 1
+        )
+d128 2
+a129 1
+        )
+d138 2
+a139 1
+        )
+d148 2
+a149 1
+        )
+d158 2
+a159 1
+        )
+d168 2
+a169 1
+        )
+d178 2
+a179 1
+        )
+d188 2
+a189 1
+        )
+d198 2
+a199 1
+        )
+d212 1
+d222 1
+a222 1
+    archetype_name = 'HomecomingSignupSheet'
+d233 1
+a233 1
+    typeDescription = "HomecomingSignupSheet"
+d245 223
+@

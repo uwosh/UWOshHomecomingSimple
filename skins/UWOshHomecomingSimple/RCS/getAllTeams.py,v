@@ -1,0 +1,40 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2007.09.13.19.20.11;	author Kimtheman;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@## Script (Python) "getAllTeams"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=
+##
+teamBrains=context.queryCatalog({'portal_type':'HomecomingTeam'})
+teamNames=[]
+for teamBrain in teamBrains:
+  team = teamBrain.getObject()
+  teamName = getattr(team, 'title', None)
+  if team and teamName:
+    teamNames.append(teamName)
+return teamNames
+@

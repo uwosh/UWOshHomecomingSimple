@@ -1,0 +1,5 @@
+[actions]
+action.success = traverse_to:string:setSlotToTeam
+
+[validators]
+validators = validateTimeslot
